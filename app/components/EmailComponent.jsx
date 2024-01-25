@@ -53,10 +53,10 @@ const EmailSection = () => {
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://github.com/Vincenttoon">
-            <Image src={GithubIcon} alt="Github Icon" />
+            <Image src={GithubIcon} alt="Github Icon" className="hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500"/>
           </Link>
           <Link href="https://www.linkedin.com/in/vincent-toon-4954b6162/">
-            <Image src={LinkedinIcon} alt="Linkedin Icon" />
+            <Image src={LinkedinIcon} alt="Linkedin Icon" className="hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500"/>
           </Link>
         </div>
       </div>
@@ -115,7 +115,7 @@ const EmailSection = () => {
             </div>
             <button
               type="submit"
-              className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-gradient-to-r from-blue-400 via-yellow-300 to-red-500  hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500 text-black font-medium py-2.5 px-5 rounded-lg w-full"
             >
               Send Message
             </button>
