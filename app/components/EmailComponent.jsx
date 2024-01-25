@@ -18,12 +18,12 @@ const EmailSection = () => {
     };
 
     // Use your emailjs service ID and template ID
-    const serviceId = process.env.NEXT_APP_SERVICE_ID;
-    const templateId = process.env.NEXT_APP_TEMPLATE_ID;
-    const publicId = process.env.NEXT_APP_PUBLIC_KEY;
+    const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    const userId = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 
     try {
-      await emailjs.send(serviceId, templateId, data);
+      await emailjs.send(serviceId, templateId, data, userId);
 
       // Email sent successfully
       setEmailSubmitted(true);
