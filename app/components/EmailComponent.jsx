@@ -75,7 +75,7 @@ const EmailSection = () => {
                 Your email
               </label>
               <input
-                name="email"
+                name="user_email"
                 type="email"
                 id="email"
                 required
