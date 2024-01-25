@@ -11,8 +11,8 @@ const projectsData = [
     description: "React app mock up of Wordle",
     image: "/images/projects/vwortle.png",
     tag: ["All", "Games"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/vwortle",
+    previewUrl: "https://vwortle-vwtd.vercel.app/",
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ const projectsData = [
     description: "MERN Stack music forward social media App",
     image: "/images/projects/livewire.png",
     tag: ["All", "Apps"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/Live-Wire",
+    previewUrl: "https://live-wire-music.herokuapp.com/",
   },
   {
     id: 3,
@@ -29,8 +29,8 @@ const projectsData = [
     description: "SQL application where users rate the beers they drink",
     image: "/images/projects/sqlbeer.png",
     tag: ["All", "Apps"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/beer_to_sql",
+    previewUrl: "https://drive.google.com/file/d/1qeD1Cma5xSUzwdU-0ontWt0Rh8wPD5UT/view",
   },
   {
     id: 4,
@@ -38,8 +38,8 @@ const projectsData = [
     description: "React Hangman App",
     image: "/images/projects/hangman.png",
     tag: ["All", "Games"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/hangman-adam-page",
+    previewUrl: "https://hangman-vwtd.vercel.app/",
   },
   {
     id: 5,
@@ -47,8 +47,8 @@ const projectsData = [
     description: "Single page API driven Brewery Finder",
     image: "/images/projects/brewery.png",
     tag: ["All", "Apps"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/brewery-finder",
+    previewUrl: "https://vincenttoon.github.io/brewery-finder/",
   },
   {
     id: 6,
@@ -56,8 +56,8 @@ const projectsData = [
     description: "Old Portfolio",
     image: "/images/projects/port2.png",
     tag: ["All", "Apps"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Vincenttoon/vincent-toon-portfolio",
+    previewUrl: "https://vincent-toon-portfolio.vercel.app/",
   },
 ];
 const ProjectsSection = () => {
@@ -91,13 +91,13 @@ const ProjectsSection = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
+          name="Apps"
+          isSelected={tag === "Apps"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
+          name="Games"
+          isSelected={tag === "Games"}
         />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
