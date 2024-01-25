@@ -23,7 +23,7 @@ const EmailSection = () => {
     const publicId = process.env.NEXT_APP_PUBLIC_KEY;
 
     try {
-      await emailjs.send(serviceId, templateId, data);
+      await emailjs.send(serviceId, templateId, publicId, data);
 
       // Email sent successfully
       setEmailSubmitted(true);
