@@ -26,11 +26,13 @@ const HeroSection = () => {
                 // Same substring at the start will only be typed out once, initially
                 "Vincent",
                 1000, // wait 1s before replacing "Mice" with "Hamsters"
-                "Web Developer",
+                "Data Manager",
                 1000,
                 "Data Analyst",
                 1000,
                 "Human Being",
+                1000,
+                "Web Developer",
                 1000,
               ]}
               wrapper="span"
@@ -39,20 +41,22 @@ const HeroSection = () => {
             />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-            Enthusiastic software development candidate with a strong foundation
-            in JavaScript, React, and web development principles. Eager to
-            contribute innovative solutions and embark on a rewarding career in
-            the software development industry.
+            Data Operations Manager and backend developer with expertise in
+            MySQL, Python, AWS, and data modeling. Skilled at building
+            predictive database procedures, automating workflows, and
+            transforming complex datasets into actionable insights. Passionate
+            about leveraging data to solve real-world business challenges and
+            deliver measurable results.
           </p>
           <div>
             <Link
               href="/#contact"
               className="inline-block px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-white bg-gradient-to-br from-red-500 via-yellow-300 to-blue-400 hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500 text-white"
             >
-              Hire Me
+              Contact Me
             </Link>
             <Link
-              href="https://docs.google.com/document/d/172Xm8ZzKbhgXofwVtKbvTxRcHxaVAbbyHBTg91L6biE/edit?usp=sharing"
+              href="https://docs.google.com/document/d/172Xm8ZzKbhgXofwVtKbvTxRcHxaVAbbyHBTg91L6biE/edit?tab=t.0"
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-red-500 to-blue-400 hover:bg-slate-800 text-white mt-3"
             >
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
@@ -84,3 +88,5 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+

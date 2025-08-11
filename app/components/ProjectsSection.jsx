@@ -7,6 +7,14 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
+    title: "Professional Projects",
+    description:
+      "Please inquire about specific projects (MySQL, Python, Javascript, Linux)",
+    image: "/images/projects/spd.png",
+    tag: ["All", "Apps"],
+  },
+  {
+    id: 2,
     title: "Vwortle",
     description: "React app mock up of Wordle",
     image: "/images/projects/vwortle.png",
@@ -15,7 +23,7 @@ const projectsData = [
     previewUrl: "https://vwortle-vwtd.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Live Wire",
     description: "MERN Stack music forward social media App",
     image: "/images/projects/livewire.png",
@@ -24,16 +32,17 @@ const projectsData = [
     previewUrl: "https://live-wire-music.herokuapp.com/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Beer To SQL",
     description: "SQL application where users rate the beers they drink",
     image: "/images/projects/sqlbeer.png",
     tag: ["All", "Apps"],
     gitUrl: "https://github.com/Vincenttoon/beer_to_sql",
-    previewUrl: "https://drive.google.com/file/d/1qeD1Cma5xSUzwdU-0ontWt0Rh8wPD5UT/view",
+    previewUrl:
+      "https://drive.google.com/file/d/1qeD1Cma5xSUzwdU-0ontWt0Rh8wPD5UT/view",
   },
   {
-    id: 4,
+    id: 5,
     title: "Hangman Adam Page",
     description: "React Hangman App",
     image: "/images/projects/hangman.png",
@@ -42,22 +51,13 @@ const projectsData = [
     previewUrl: "https://hangman-vwtd.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Brewery Finder",
     description: "Single page API driven Brewery Finder",
     image: "/images/projects/brewery.png",
     tag: ["All", "Apps"],
     gitUrl: "https://github.com/Vincenttoon/brewery-finder",
     previewUrl: "https://vincenttoon.github.io/brewery-finder/",
-  },
-  {
-    id: 6,
-    title: "Vincent's Portfolio 2.0",
-    description: "Old Portfolio",
-    image: "/images/projects/port2.png",
-    tag: ["All", "Apps"],
-    gitUrl: "https://github.com/Vincenttoon/vincent-toon-portfolio",
-    previewUrl: "https://vincent-toon-portfolio.vercel.app/",
   },
 ];
 const ProjectsSection = () => {

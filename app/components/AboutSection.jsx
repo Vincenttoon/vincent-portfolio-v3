@@ -9,12 +9,16 @@ const TAB_DATA = [
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-        <li>Javascript</li>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Express.js</li>
         <li>MySQL</li>
         <li>Python</li>
+        <li>Javascript</li>
+        <li>AWS Services</li>
+        <li>Linux</li>
+        <li>React</li>
+        <li>PIP</li>
+        <li>Node.js</li>
+        <li>Power BI</li>
+        <li>Excel</li>
         <li>ScSS</li>
         <li>R</li>
       </ul>
@@ -28,12 +32,9 @@ const TAB_DATA = [
         <h3>Schooling:</h3>
         <li>Washington University St Louis</li>
         <li>Southern Illinois University Edwardsville</li>
-        <li>CodeCademy</li>
-        <br></br>
-        <h3>Textbooks:</h3>
-        <li>Python 3: The Hard Way - Zed A. Shaw</li>
-        <li>R for Data Science - 2nd Edition - OReilly</li>
-        <li>Python Programming & SQL - 2023 - Mark Reed</li>
+        <li>AWS Skill Builder</li>
+        <li>CodeAcademy</li>
+        <li>Udemy</li>
         <br></br>
       </ul>
     ),
@@ -44,6 +45,7 @@ const TAB_DATA = [
     content: (
       <ul className="list-disc pl-2">
         <li>Bachelors of Political Science</li>
+        <li>AWS Cloud Practitioner Essentials - Fundamental</li>
         <li>Certificate of Completion - Full Stack Web Development</li>
         <li>Certificate of Completion - Data Analysis with Python</li>
       </ul>
@@ -54,10 +56,9 @@ const TAB_DATA = [
     id: "work",
     content: (
       <ul className="list-disc pl-2">
-        <li>Manager - Global Brew Taphouse - 2021-Present</li>
-        <li>Regional Sales - Robert Chick Fritz - 2021-2022</li>
-        <li>Brewery Assistant/Shift Manager - Old Herald - 2020-2021</li>
-        <li>Brand Ambassador - Craft Brand Ambassador - 2018-2021</li>
+        <li>Data Manager - Source Path Digital - 2024 - Present</li>
+        <li>Manager - Global Brew Taphouse - 2021-2024</li>
+        <li>Brewery Assistant- Old Herald - 2020-2021</li>
         <li>Bar Program Manager - Wang Gang Asian - 2013-2020</li>
       </ul>
     ),
@@ -83,12 +84,14 @@ const AboutSection = () => {
           className="pl-142"
         />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold text-white mb-4 border-b border-yellow-300">About Me</h2>
+          <h2 className="text-4xl font-bold text-white mb-4 border-b border-yellow-300">
+            About Me
+          </h2>
           <p className="text-base lg:text-lg">
-            Enthusiastic software development candidate with a strong foundation
-            in JavaScript, React, and web development principles. Eager to
-            contribute innovative solutions and embark on a rewarding career in
-            the software development industry.
+            Former aspiring Data Analyst, turned service industry professional,
+            turned craft beer industry professional, turned web developer,
+            turned Data Analyst. I love technology, music, sports, friends, and
+            my dog.
           </p>
           <div className="flex flex-row mt-8">
             <TabButton
@@ -115,7 +118,6 @@ const AboutSection = () => {
             >
               Work
             </TabButton>
-            
           </div>
           <div className="mt-8">
             {TAB_DATA.find((t) => t.id === tab).content}
