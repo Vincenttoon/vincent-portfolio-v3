@@ -63,7 +63,9 @@ const EmailSection = () => {
       const res = await emailjs.send(serviceId, templateId, data, userId);
       if (res?.status === 200) {
         setStatus("success");
-        setStatusMsg("Email sent! I’ll get back to you soon.");
+        setStatusMsg(
+          "Email sent! I’ll get back to you soon as soon as possible. :)"
+        );
         form.reset();
         setEmailValue("");
         setEmailError("");
@@ -112,8 +114,10 @@ const EmailSection = () => {
           Let&apos;s Connect
         </h5>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
-          I&apos;m always looking for new connections and opportunities—whether
-          you have a question, want to talk shop, or just want to say hi.
+          I&apos;m always looking for new connections and opportunities. Whether
+          you are interested in my services, inquiring professionally, have a
+          question, want to talk shop, or just want to say hi - please reach
+          out!.
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://github.com/Vincenttoon" aria-label="GitHub">
