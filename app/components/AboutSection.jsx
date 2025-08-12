@@ -8,7 +8,7 @@ const TAB_DATA = [
     title: "Skills",
     id: "skills",
     content: (
-      <ul className="list-disc pl-2">
+      <ul className="list-disc pl-5 grid sm:grid-cols-2 gap-x-8 gap-y-2">
         <li>MySQL</li>
         <li>Python</li>
         <li>Javascript</li>
@@ -29,7 +29,6 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <h3>Schooling:</h3>
         <li>Washington University St Louis</li>
         <li>Southern Illinois University Edwardsville</li>
         <li>AWS Skill Builder</li>
@@ -56,7 +55,10 @@ const TAB_DATA = [
     id: "work",
     content: (
       <ul className="list-disc pl-2">
+        <h3>Technical:</h3>
         <li>Data Manager - Source Path Digital - 2024 - Present</li>
+        <br></br>
+        <h3>Service:</h3>
         <li>Manager - Global Brew Taphouse - 2021-2024</li>
         <li>Brewery Assistant- Old Herald - 2020-2021</li>
         <li>Bar Program Manager - Wang Gang Asian - 2013-2020</li>
