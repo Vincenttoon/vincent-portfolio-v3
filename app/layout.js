@@ -1,17 +1,15 @@
-import { Inter } from "next/font/google";
+// app/layout.js
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata = {
-  title: "Vincent Toon Portfolio",
-  description: "Vincent Toon's professional online portfolio, self created",
+  title: "Vincent Toon",
+  description: "Portfolio",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
