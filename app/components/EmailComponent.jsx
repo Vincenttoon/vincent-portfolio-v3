@@ -4,15 +4,39 @@ import Link from "next/link";
 import Image from "next/image";
 import emailjs from "@emailjs/browser";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
 const EmailSection = () => {
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  // "idle" | "loading" | "success" | "error"
+  const [status, setStatus] = useState("idle");
+  const [statusMsg, setStatusMsg] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (val) => {
+    const v = val.trim();
+    if (!v) return "Email is required.";
+    if (!emailRegex.test(v)) return "Please enter a valid email address.";
+    return "";
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
 
+    // final client-side validation
+    const err = validateEmail(emailValue);
+    if (err) {
+      setEmailError(err);
+      setStatus("error");
+      setStatusMsg(err);
+      return;
+    }
+
     const data = {
-      email: form.user_email.value, // name="user_email"
+      // If your EmailJS template expects a different key (e.g. "reply_to"),
+      // change this property name accordingly:
+      email: emailValue.trim().toLowerCase(),
       subject: form.subject.value,
       message: form.message.value,
     };
@@ -21,14 +45,57 @@ const EmailSection = () => {
     const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
     const userId = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 
+    if (!serviceId || !templateId || !userId) {
+      setStatus("error");
+      setStatusMsg("Email service isn’t configured.");
+      return;
+    }
+
+    setStatus("loading");
+    setStatusMsg("Sending…");
+
     try {
-      await emailjs.send(serviceId, templateId, data, userId);
-      setEmailSubmitted(true);
-      setTimeout(() => setEmailSubmitted(false), 5000);
-    } catch (error) {
-      console.error("Email sending error:", error);
+      const res = await emailjs.send(serviceId, templateId, data, userId);
+      if (res?.status === 200) {
+        setStatus("success");
+        setStatusMsg("Email sent! I’ll get back to you soon.");
+        form.reset();
+        setEmailValue("");
+        setEmailError("");
+        setTimeout(() => {
+          setStatus("idle");
+          setStatusMsg("");
+        }, 5000);
+      } else {
+        throw new Error(res?.text || "Unknown EmailJS error");
+      }
+    } catch (err) {
+      console.error("Email sending error:", err);
+      setStatus("error");
+      setStatusMsg("Couldn’t send right now. Please try again later.");
     }
   };
+
+  const onEmailChange = (e) => {
+    const val = e.target.value;
+    setEmailValue(val);
+    // live-validate as they type
+    const err = validateEmail(val);
+    setEmailError(err);
+    if (status !== "loading") {
+      // only show validation state, don’t overwrite a success/error from submit
+      if (err) {
+        setStatus("error");
+        setStatusMsg(err);
+      } else if (status !== "success") {
+        setStatus("idle");
+        setStatusMsg("");
+      }
+    }
+  };
+
+  const isSubmitting = status === "loading";
+  const canSubmit = !emailError && emailValue.length > 0 && !isSubmitting;
 
   return (
     <section
@@ -42,10 +109,8 @@ const EmailSection = () => {
           Let&apos;s Connect
         </h5>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
-          I&apos;m always looking for new connections and opportunities to
-          advance myself and others —whether you have a question, want to talk
-          shop, or just want to say hi - please reach out. I&apos;ll try my best
-          to get back to you as soon as possible!
+          I&apos;m always looking for new connections and opportunities—whether
+          you have a question, want to talk shop, or just want to say hi.
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://github.com/Vincenttoon" aria-label="GitHub">
@@ -71,70 +136,105 @@ const EmailSection = () => {
       </div>
 
       <div>
-        {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
+        {/* Status message */}
+        {status !== "idle" && (
+          <p
+            className={
+              "text-sm mb-4 " +
+              (status === "success"
+                ? "text-green-500"
+                : status === "error"
+                ? "text-red-500"
+                : "text-slate-400")
+            }
+            aria-live="polite"
+          >
+            {statusMsg}
           </p>
-        ) : (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label
-                htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
-              >
-                Your email
-              </label>
-              <input
-                name="user_email"
-                type="email"
-                id="email"
-                required
-                className="bg-[#18191E] border border-[#33353F] hover:bg-white placeholder-[#9CA2A9] text-gray-100 hover:text-black text-sm rounded-lg block w-full p-2.5"
-                placeholder="apollo@email.com"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label
-                htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Subject
-              </label>
-              <input
-                name="subject"
-                type="text"
-                id="subject"
-                required
-                className="bg-[#18191E] border border-[#33353F] hover:bg-white placeholder-[#9CA2A9] hover:text-black text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="What do you want to talk about?"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label
-                htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Message
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                required
-                className="bg-[#18191E] hover:bg-white border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 hover:text-black text-sm rounded-lg block w-full p-2.5"
-                placeholder="..."
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-blue-400 via-yellow-300 to-red-500 hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500 text-black font-medium py-2.5 px-5 rounded-lg w-full"
-            >
-              Send Message
-            </button>
-          </form>
         )}
+
+        <form className="flex flex-col" onSubmit={handleSubmit} noValidate>
+          <div className="mb-6">
+            <label
+              htmlFor="email"
+              className="text-white block mb-2 text-sm font-medium"
+            >
+              Your email
+            </label>
+            <input
+              name="user_email"
+              type="email"
+              id="email"
+              inputMode="email"
+              autoComplete="email"
+              required
+              value={emailValue}
+              onChange={onEmailChange}
+              onBlur={(e) => setEmailError(validateEmail(e.target.value))}
+              aria-invalid={!!emailError}
+              aria-describedby="email-error"
+              className={
+                "bg-[#18191E] border placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5 " +
+                (emailError
+                  ? "border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
+                  : "border-[#33353F] hover:bg-white hover:text-black")
+              }
+              placeholder="you@example.com"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+            />
+            {emailError && (
+              <p id="email-error" className="text-xs text-red-500 mt-1">
+                {emailError}
+              </p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="subject"
+              className="text-white block text-sm mb-2 font-medium"
+            >
+              Subject
+            </label>
+            <input
+              name="subject"
+              type="text"
+              id="subject"
+              required
+              className="bg-[#18191E] border border-[#33353F] hover:bg-white placeholder-[#9CA2A9] hover:text-black text-gray-100 text-sm rounded-lg block w-full p-2.5"
+              placeholder="What do you want to talk about?"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="message"
+              className="text-white block text-sm mb-2 font-medium"
+            >
+              Message
+            </label>
+            <textarea
+              name="message"
+              id="message"
+              required
+              className="bg-[#18191E] hover:bg-white border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 hover:text-black text-sm rounded-lg block w-full p-2.5"
+              placeholder="..."
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={!canSubmit}
+            className={
+              "bg-gradient-to-r from-blue-400 via-yellow-300 to-red-500 text-black font-medium py-2.5 px-5 rounded-lg w-full " +
+              (canSubmit
+                ? "hover:bg-gradient-to-r hover:from-yellow-300 hover:via-blue-400 hover:to-red-500"
+                : "opacity-70 cursor-not-allowed")
+            }
+          >
+            {isSubmitting ? "Sending…" : "Send Message"}
+          </button>
+        </form>
       </div>
     </section>
   );
