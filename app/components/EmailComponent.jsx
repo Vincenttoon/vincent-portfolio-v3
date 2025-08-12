@@ -35,12 +35,16 @@ const EmailSection = () => {
 
     // map to EmailJS template vars
     const data = {
-      reply_to: emailValue.trim().toLowerCase(), // user's email
-      from_name: form.user_name.value.trim(), // user's name
+      // what your template reads
+      user_email: emailValue.trim().toLowerCase(),
+      user_name: form.user_name.value.trim(),
       subject: form.subject.value.trim(),
       message: form.message.value.trim(),
-    };
 
+      // also include the aliases many templates use
+      reply_to: emailValue.trim().toLowerCase(),
+      from_name: form.user_name.value.trim(),
+    };
     const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
     const userId = process.env.NEXT_PUBLIC_PUBLIC_KEY;
