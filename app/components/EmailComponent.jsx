@@ -115,7 +115,7 @@ const EmailSection = () => {
         </h5>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           I&apos;m always looking for new connections and opportunities. Whether
-          you are interested in my services, inquiring professionally, have a
+          you are interested in services, inquiring professionally, have a
           question, want to talk shop, or just want to say hi - please reach
           out!.
         </p>
