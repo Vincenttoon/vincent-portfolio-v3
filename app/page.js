@@ -1,3 +1,6 @@
+// top of app/page.js (optional)
+export const dynamic = "force-dynamic";
+
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import AboutSection from "./components/AboutSection";
@@ -18,7 +21,6 @@ export default function Home() {
         <EmailSection />
       </div>
       <Footer />
-      
     </main>
   );
 }
