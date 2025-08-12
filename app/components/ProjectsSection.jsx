@@ -26,7 +26,7 @@ const projectsData = [
     id: 3,
     title: "Live Wire",
     description: "MERN Stack music forward social media App",
-    image: "/images/proje cts/livewire.png",
+    image: "/images/projects/livewire.png",
     tag: ["All", "Apps"],
     gitUrl: "https://github.com/Vincenttoon/Live-Wire",
   },
