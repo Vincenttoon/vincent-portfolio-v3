@@ -24,7 +24,7 @@ const EmailSection = () => {
     e.preventDefault();
     const form = e.currentTarget;
 
-    // final client-side validation
+    // final email check
     const err = validateEmail(emailValue);
     if (err) {
       setEmailError(err);
@@ -33,12 +33,12 @@ const EmailSection = () => {
       return;
     }
 
+    // map to EmailJS template vars
     const data = {
-      // If your EmailJS template expects a different key (e.g. "reply_to"),
-      // change this property name accordingly:
-      email: emailValue.trim().toLowerCase(),
-      subject: form.subject.value,
-      message: form.message.value,
+      reply_to: emailValue.trim().toLowerCase(), // user's email
+      from_name: form.user_name.value.trim(), // user's name
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim(),
     };
 
     const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
@@ -79,11 +79,9 @@ const EmailSection = () => {
   const onEmailChange = (e) => {
     const val = e.target.value;
     setEmailValue(val);
-    // live-validate as they type
     const err = validateEmail(val);
     setEmailError(err);
     if (status !== "loading") {
-      // only show validation state, don’t overwrite a success/error from submit
       if (err) {
         setStatus("error");
         setStatusMsg(err);
@@ -136,7 +134,7 @@ const EmailSection = () => {
       </div>
 
       <div>
-        {/* Status message */}
+        {/* status message */}
         {status !== "idle" && (
           <p
             className={
@@ -154,6 +152,7 @@ const EmailSection = () => {
         )}
 
         <form className="flex flex-col" onSubmit={handleSubmit} noValidate>
+          {/* Email */}
           <div className="mb-6">
             <label
               htmlFor="email"
@@ -189,6 +188,26 @@ const EmailSection = () => {
             )}
           </div>
 
+          {/* Name */}
+          <div className="mb-6">
+            <label
+              htmlFor="name"
+              className="text-white block mb-2 text-sm font-medium"
+            >
+              Your name
+            </label>
+            <input
+              name="user_name"
+              type="text"
+              id="name"
+              autoComplete="name"
+              required
+              className="bg-[#18191E] border border-[#33353F] hover:bg-white placeholder-[#9CA2A9] hover:text-black text-gray-100 text-sm rounded-lg block w-full p-2.5"
+              placeholder="Jane Doe"
+            />
+          </div>
+
+          {/* Subject */}
           <div className="mb-6">
             <label
               htmlFor="subject"
@@ -206,6 +225,7 @@ const EmailSection = () => {
             />
           </div>
 
+          {/* Message */}
           <div className="mb-6">
             <label
               htmlFor="message"
